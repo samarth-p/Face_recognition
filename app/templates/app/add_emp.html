@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+
+{% block content %}
+    <div class="container" style="background-color: white; padding: 50px;">
+    <h3>Enter Employee details</h3>
+
+    <form method="POST">{% csrf_token %}
+        <div class="fieldWrapper">
+            <div class=""container" style="padding: 20px;">ID:  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; {{ form.id }} </div>
+            <div class=""container" style="padding: 20px;">NAME: {{ form.name }} </div>
+
+        </div>
+        <button type="submit" class="save btn btn-info">Save</button>
+    </form>
+    </div>
+{% endblock %}
+
+

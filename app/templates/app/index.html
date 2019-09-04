@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+<div class="container" style="background-color: white; padding: 50px; margin-top: 100px;">
+	<h1>SANRIA Employee Recognition System</h1>
+	<hr>
+	<div class="container">
+		<a class="btn btn-primary"  href="{% url 'identify' %}" style="font-size: 20px; margin-bottom: 10px;">Identify Faces</a>
+		<a class="btn btn-primary"  href="{% url 'detected' %}" style="font-size: 20px; margin-bottom: 10px;">Detected Faces</a>
+		<a class="btn btn-primary" href="{% url 'add_emp' %}" style="font-size: 20px; margin-bottom: 10px;">Add Employee</a>
+		<a class="btn btn-primary"  href="{% url 'add_photos' %}" style="font-size: 20px; margin-bottom: 10px;">Add photos</a>
+		<a class="btn btn-primary"  href="{% url 'train_model' %}" style="font-size: 20px; margin-bottom: 10px;">Train model</a>
+	</div>
+</div>
+{% endblock %}

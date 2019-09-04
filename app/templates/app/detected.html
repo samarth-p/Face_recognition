@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+<style>
+
+    #myInput {
+      background-image: url('/css/searchicon.png');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      width: 100%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+    }
+
+    #myTable {
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid #ddd;
+      font-size: 18px;
+    }
+
+    #myTable th, #myTable td {
+      text-align: left;
+      padding: 12px;
+    }
+
+    #myTable tr {
+      border-bottom: 1px solid #ddd;
+    }
+
+    #myTable tr.header, #myTable tr:hover {
+      background-color: #f1f1f1;
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container" style="background-color: white; padding: 50px;">
+
+<form type="get" action="." style="margin: 0">
+    Enter Date: <input id="search_submit" type="date" name="search_box">
+    <button id="search_submit" type="submit" >Submit</button>
+</form>
+<br>
+
+<strong>Date: {{ date|date:"D, d M, Y" }}</strong>
+
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name.." style="float: right; padding: 10px;">
+  <br>
+
+  <table id="myTable">
+    <tr class="header">
+      	<th width="200">ID</th>
+      	<th width="300">timestamp</th>
+        <th width="100">Image</th>
+  	</tr>
+  	{% for det in det_list %}
+
+        <tr>
+            <td>{{det.emp_id}}</td>
+            <td>{{det.time_stamp}}</td>
+            <td>
+              <!-- <img src="{{ det.photo.url }}" height="100" style="margin-bottom: 5px;"> -->
+              <img src="{{ det.photo.url }}" height="100" style="margin-bottom: 5px;">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#{{ det.id }}">Click to enlarge</button>
+
+                <!-- Modal -->
+                <div id="{{ det.id }}" class="modal fade" role="dialog" style="background:">
+                  <div class="modal-dialog modal-lg" style="text-align: center">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <img src="{{ det.photo.url }}" style="margin-bottom: 5px;">
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+            </td>
+
+
+
+
+
+
+        </tr>
+
+  	{% endfor %}
+  </table>
+</div>
+
+<script>
+    function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+{% endblock %}
