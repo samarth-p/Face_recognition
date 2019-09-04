@@ -11,7 +11,7 @@ The system is built using python libraries dlib and face_recognition. Django fra
 Firstly, to run the django server, open the terminal and go the following directory
 
 ```bash
-cd facerecognition/face_rec_django
+cd face_rec_django
 ```
 
 and run the following command
